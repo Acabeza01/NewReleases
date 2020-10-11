@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        audio:hover, audio:focus, audio:active
+        {
+        -webkit-box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
+        -moz-box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
+        box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
+        -webkit-transform: scale(1.05);
+        -moz-transform: scale(1.05);
+        transform: scale(1.05);
+        }
+
+        audio
+        {
+        -webkit-transition:all 0.5s linear;
+        -moz-transition:all 0.5s linear;
+        -o-transition:all 0.5s linear;
+        transition:all 0.5s linear;
+        -moz-box-shadow: 2px 2px 4px 0px #006773;
+        -webkit-box-shadow:  2px 2px 4px 0px #006773;
+        box-shadow: 2px 2px 4px 0px #006773;
+        -moz-border-radius:7px 7px 7px 7px ;
+        -webkit-border-radius:7px 7px 7px 7px ;
+        border-radius:7px 7px 7px 7px ;
+        }
+    </style>
+</head>
+<body style="background-color:rgb(200, 228, 231);">
+   
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Project name</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="/">International</a></li>
+              <li><a href="/NL/">Dutch</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+
+    {% for regel in regels %}
+    <div class="row text-light h3 font-weight-bold">
+        <!-- <div class="col-1 offset-1">{{ regel.volgnr }}</div>             -->
+        <div class="col-3 offset-2 bg-primary">{{ regel.artist }}</div>                
+        <div class="col-5 bg-primary">{{ regel.title }}</div>
+    </div>    
+    <div class="row text-light font-weight-bold">
+
+    </div>     
+    <div class="row h4 font-weight-bold">
+        <div class="col-1 offset-2 " data-toggle="tooltip" title="Release date">{{regel.reldate}}</div>            
+        <div class="col-3 offset-2 h6" data-toggle="tooltip" title="Genre">
+            {% for genre in regel.artist_genres %}  
+                {% if (loop.index < 3) %} 
+                    {{genre}} 
+                {% endif %}
+            {% endfor %}               
+            </div>         
+        <div class="col-1 offset-1 badge badge-pill badge-warning" data-toggle="tooltip" title="Popularity">
+            {{regel.artist_popularity}}
+        </div>
+    </div> 
+    <div class="row">
+        <div class="col-3 offset-2">
+            <img class="col-12" loading="lazy" alt="{{regel.title}}" src="{{ regel.image }}" >
+        </div>         
+        <div class="col-6">
+            <div class="row">
+            {% for track in regel.tracks %}
+                <div class="col-5 font-weight-bold text-left">{{regel.tracks[loop.index-1]}}</div>
+                <div class="col-4"> 
+                    <audio controls title="{{ regel.tracks[loop.index-1] }}" preload="none"> 
+                        <source src="{{ regel.prev[loop.index-1] }}" type="audio/mpeg"> 
+                    </audio>
+                </div>
+            {% endfor %}
+            </div>
+
+        </div>
+    </div>
+
+    {% endfor %} 
+</body>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</html>
