@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <title>New Releases</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
@@ -17,7 +17,6 @@
         -moz-transform: scale(1.05);
         transform: scale(1.05);
         }
-
         audio
         {
         -webkit-transition:all 0.5s linear;
@@ -31,28 +30,27 @@
         -webkit-border-radius:7px 7px 7px 7px ;
         border-radius:7px 7px 7px 7px ;
         }
-
         body{
             background-color:rgb(151, 151, 248);
         }
-
+        .responsive-img{
+            max-width: 100%;
+            height: auto;
+            }
     </style>
 </head>
 <body>
-    
         <nav class="navbar navbar-dark bg-dark sticky-top">
             <div class="col-4 font-weight-bold h1">New Releases</div>
             <div class="col-2 offset-4"><a href="/">International  </a></div>
             <div class="col-2"><a href="/NL/">Dutch</a></div>
         </nav>
-   
         {% for regel in regels %}
         <div class="row text-light font-weight-bold ">
             <!-- <div class="col-1 offset-1">{{ regel.volgnr }}</div>             -->
             <div class="col-3 bg-primary">{{ regel.artist }}</div>                
             <div class="col bg-primary">{{ regel.title }}</div>
         </div>    
-  
         <div class="row">
             <div class="col-3" data-toggle="tooltip" title="Release date">{{regel.reldate}}</div>            
             <div class="col-8" data-toggle="tooltip" title="Genre">
@@ -68,7 +66,7 @@
         </div> 
         <div class="row">
             <div class="col-3">
-                <img class="col-12" loading="lazy" alt="{{regel.title}}" src="{{ regel.image }}" >
+                <img class="col-12 responsive-img" loading="lazy" alt="{{regel.title}}" src="{{ regel.image }}" >
             </div>         
             <div class="col-9">
                 <div class="row">
@@ -81,17 +79,8 @@
                     </div>
                 {% endfor %}
                 </div>
-
             </div>
         </div>
-
         {% endfor %} 
-
 </body>
-  <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
 </html>
