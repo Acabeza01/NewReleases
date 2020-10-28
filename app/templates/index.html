@@ -35,25 +35,10 @@
 </head>
 <body style="background-color:rgb(200, 228, 231);">
    
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Project name</a>
-          </div>
-          <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="/">International</a></li>
-              <li><a href="/NL/">Dutch</a></li>
-              <li><a href="#">Contact</a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
+    <nav class="navbar navbar-dark bg-dark sticky-top offset-2 col-8">
+          <div class="col-4 font-weight-bold h1">New Releases</div>
+          <div class="col-2 offset-4"><a href="/">International  </a></div>
+          <div class="col-2"><a href="/NL/">Dutch</a></div>
       </nav>
 
     {% for regel in regels %}
