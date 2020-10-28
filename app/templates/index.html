@@ -31,18 +31,24 @@
         -webkit-border-radius:7px 7px 7px 7px ;
         border-radius:7px 7px 7px 7px ;
         }
+
+        html {
+            font-size: 0.25rem;
+        }
+
+
     </style>
 </head>
-<body style="background-color:rgb(200, 228, 231);">
+<body style="background-color:rgb(200, 228, 231); " >
    
-    <nav class="navbar navbar-dark bg-dark sticky-top offset-2 col-8">
-          <div class="col-4 font-weight-bold h1">New Releases</div>
+    <nav class="navbar navbar-dark bg-dark sticky-top offset-2 col-8 ">
+          <div class="col-4 font-weight-bold ">New Releases</div>
           <div class="col-2 offset-4"><a href="/">International  </a></div>
           <div class="col-2"><a href="/NL/">Dutch</a></div>
       </nav>
 
     {% for regel in regels %}
-    <div class="row text-light h3 font-weight-bold">
+    <div class="row text-light font-weight-bold ">
         <!-- <div class="col-1 offset-1">{{ regel.volgnr }}</div>             -->
         <div class="col-3 offset-2 bg-primary">{{ regel.artist }}</div>                
         <div class="col-5 bg-primary">{{ regel.title }}</div>
@@ -50,9 +56,9 @@
     <div class="row text-light font-weight-bold">
 
     </div>     
-    <div class="row h4 font-weight-bold">
+    <div class="row font-weight-bold hx6">
         <div class="col-1 offset-2 " data-toggle="tooltip" title="Release date">{{regel.reldate}}</div>            
-        <div class="col-3 offset-2 h6" data-toggle="tooltip" title="Genre">
+        <div class="col-3 offset-2 " data-toggle="tooltip" title="Genre">
             {% for genre in regel.artist_genres %}  
                 {% if (loop.index < 3) %} 
                     {{genre}} 
