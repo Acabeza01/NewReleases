@@ -30,57 +30,75 @@
         -webkit-border-radius:7px 7px 7px 7px ;
         border-radius:7px 7px 7px 7px ;
         }
-        body{
-            background-color:rgb(151, 151, 248);
+        body, html {
+        height: 100%;
         }
-        .responsive-img{
-            max-width: 100%;
-            height: auto;
-            }
-    </style>
+        .bg {
+        /* The image used */
+        background-image: url("../static/201.png");
+        background-color: rgb(149, 211, 247);
+        /* Full height */
+        height: 100%;
+
+        /* Center and scale the image nicely */
+        background-position:center;
+        background-repeat: repeat;
+        background-size:auto;
+        }
+        .badge-info{
+            height: 150%;
+        }
+     </style>
 </head>
-<body>
-        <nav class="navbar navbar-dark bg-dark sticky-top">
+<body class="bg mx-3">
+        <!-- <div class="bg"></div> -->
+        <div class="row bg-dark text-light">
             <div class="col-4 font-weight-bold h1">New Releases</div>
-            <div class="col-2 offset-4"><a href="/">International  </a></div>
-            <div class="col-2"><a href="/NL/">Dutch</a></div>
-        </nav>
+            <div class="col-2 offset-4 h3"><a href="/">International</a></div>
+            <div class="col-2 h3"><a href="/NL/">Dutch</a></div>
+        </div>
         {% for regel in regels %}
-        <div class="row text-light font-weight-bold ">
+        <div class="row text-light font-weight-bold mt-3 h3 bg-primary">
             <!-- <div class="col-1 offset-1">{{ regel.volgnr }}</div>             -->
-            <div class="col-3 bg-primary">{{ regel.artist }}</div>                
-            <div class="col bg-primary">{{ regel.title }}</div>
+            <div class="col-3 ">{{ regel.artist }}</div>                
+            <div class="col-7 ">{{ regel.title }}</div>
+            <div class="col-1 text-dark" data-toggle="tooltip" title="Popularity">
+                {{regel.artist_popularity}}
+            </div>
+            <div class="col-1"></div>
         </div>    
-        <div class="row">
-            <div class="col-3" data-toggle="tooltip" title="Release date">{{regel.reldate}}</div>            
-            <div class="col-8" data-toggle="tooltip" title="Genre">
+        <div class="row mt-2">
+            <div class="col-1 " data-toggle="tooltip" title="Release date">{{regel.reldate}}</div>            
+            <div class="col offset-2" data-toggle="tooltip" title="Genre">
                 {% for genre in regel.artist_genres %}  
                     {% if (loop.index < 3) %} 
                         {{genre}} 
                     {% endif %}
                 {% endfor %}               
             </div>         
-            <div class="col-1 badge badge-pill badge-warning" data-toggle="tooltip" title="Popularity">
-                {{regel.artist_popularity}}
-            </div>
+
         </div> 
         <div class="row">
             <div class="col-3">
                 <img class="col-12 responsive-img" loading="lazy" alt="{{regel.title}}" src="{{ regel.image }}" >
             </div>         
-            <div class="col-9">
-                <div class="row">
+            <div class="col-8">
+                <!-- <div class="row"> -->
                 {% for track in regel.tracks %}
-                    <div class="col-6 font-weight-bold" >{{regel.tracks[loop.index-1]}}</div>
-                    <div class="col-6"> 
-                        <audio controls title="{{ regel.tracks[loop.index-1] }}" preload="none"> 
-                            <source src="{{ regel.prev[loop.index-1] }}" type="audio/mpeg"> 
-                        </audio>
+                    <div class="text-danger">
+                        <a href="{{ regel.prev[loop.index-1] }}" target="_blank"
+                        class="badge badge-secondary">{{regel.tracks[loop.index-1]}}</a>
                     </div>
+                    <!-- <div class="col-6"> 
+                        <audio controls title="{{ regel.tracks[loop.index-1] }}" preload="none"> 
+                            <source src="{{ regel.prev[loop.index-1] }}" type="audio/mpeg">
+                        </audio>
+                    </div> -->
                 {% endfor %}
                 </div>
             </div>
         </div>
+        <div class="row"></div>
         {% endfor %} 
 </body>
 </html>
