@@ -1,5 +1,5 @@
 from flask_frozen import Freezer
-from mania30 import app
+from newreleases import app
 
 import datetime
 

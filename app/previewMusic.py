@@ -36,7 +36,13 @@ def haalNewReleases(sp, land):
 
                 artist = sp.artist(el['artists'][0]['id'])
                 album.artist_popularity = artist['popularity']
-                album.artist_genres = artist['genres']
+
+                genre = ""
+                for idx, g in enumerate(artist['genres']):
+                    if idx < 4:
+                        genre = genre + " " + g
+
+                album.artist_genres = genre
 
                 tracks = sp.album_tracks(album_id=album_id, limit=50, offset=0, market=None)
                 album.tracks = []

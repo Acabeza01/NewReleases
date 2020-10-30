@@ -8,35 +8,10 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
-        audio:hover, audio:focus, audio:active
-        {
-        -webkit-box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
-        -moz-box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
-        box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
-        -webkit-transform: scale(1.05);
-        -moz-transform: scale(1.05);
-        transform: scale(1.05);
-        }
-        audio
-        {
-        -webkit-transition:all 0.5s linear;
-        -moz-transition:all 0.5s linear;
-        -o-transition:all 0.5s linear;
-        transition:all 0.5s linear;
-        -moz-box-shadow: 2px 2px 4px 0px #006773;
-        -webkit-box-shadow:  2px 2px 4px 0px #006773;
-        box-shadow: 2px 2px 4px 0px #006773;
-        -moz-border-radius:7px 7px 7px 7px ;
-        -webkit-border-radius:7px 7px 7px 7px ;
-        border-radius:7px 7px 7px 7px ;
-        }
-        body, html {
-        height: 100%;
-        }
-        .bg {
-        /* The image used */
-        background-image: url("../static/201.png");
-        background-color: rgb(149, 211, 247);
+        .some-page-wrapper {
+        margin: 15px;
+        background-image: url('../static/201.png');
+        background-color: rgb(149, 211, 247); */
         /* Full height */
         height: 100%;
 
@@ -44,52 +19,74 @@
         background-position:center;
         background-repeat: repeat;
         background-size:auto;
+        }        
+
+        .row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
         }
-        .badge-info{
-            height: 150%;
+
+        .column {
+        display: flex;
+        flex-direction: column;
+        flex-basis: 100%;
+        }     
+
+        @media screen and (min-width: 800px) {
+        .column {
+            flex: 1
         }
+
+        .double-column {
+            flex: 2
+        }
+        }        
+
+        a:link {color:#8472eb}
+        a:visited {color:#3e3e8d;}
+        a:hover {font-size:120%;
+                text-decoration: none;
+            }
+
      </style>
 </head>
-<body class="bg mx-3">
+<body class="some-page-wrapper mx-5">
         <!-- <div class="bg"></div> -->
-        <div class="row bg-dark text-light">
-            <div class="col-4 font-weight-bold h1">New Releases</div>
-            <div class="col-2 offset-4 h3"><a href="/">International</a></div>
-            <div class="col-2 h3"><a href="/NL/">Dutch</a></div>
+        <div class="row h3 bg-dark text-light">
+            <div class="column font-weight-bold ">New Releases</div>
+            <div class="column"></div>
+            <div class="column "><a href="/">International</a></div>
+            <div class="column "><a href="/NL/">Dutch</a></div>
         </div>
         {% for regel in regels %}
-        <div class="row text-light font-weight-bold mt-3 h3 bg-primary">
-            <!-- <div class="col-1 offset-1">{{ regel.volgnr }}</div>             -->
-            <div class="col-3 ">{{ regel.artist }}</div>                
-            <div class="col-7 ">{{ regel.title }}</div>
-            <div class="col-1 text-dark" data-toggle="tooltip" title="Popularity">
+        <div class="row text-light font-weight-bold mt-3 h5 bg-primary">
+            <div class="column ">{{ regel.artist }}</div>   
+            <!-- <div class="column"></div> -->
+            <div class="column ">{{ regel.title }}</div>
+            <!-- <div class="column text-dark" data-toggle="tooltip" title="Popularity">
                 {{regel.artist_popularity}}
-            </div>
-            <div class="col-1"></div>
+            </div> -->
         </div>    
         <div class="row mt-2">
-            <div class="col-1 " data-toggle="tooltip" title="Release date">{{regel.reldate}}</div>            
-            <div class="col offset-2" data-toggle="tooltip" title="Genre">
-                {% for genre in regel.artist_genres %}  
-                    {% if (loop.index < 3) %} 
-                        {{genre}} 
-                    {% endif %}
-                {% endfor %}               
+            <div class="column " data-toggle="tooltip" title="Release date">{{regel.reldate}}</div> 
+            <div class="column " data-toggle="tooltip" title="Genre">
+                {{ regel.artist_genres }}  
             </div>         
 
         </div> 
         <div class="row">
-            <div class="col-3">
-                <img class="col-12 responsive-img" loading="lazy" alt="{{regel.title}}" src="{{ regel.image }}" >
+            <div class="column" >
+                <img class="column  responsive-img" width=60% loading="lazy" alt="{{regel.title}}" src="{{ regel.image }}" >
             </div>         
-            <div class="col-8">
-                <!-- <div class="row"> -->
+            <div class="column" >
                 {% for track in regel.tracks %}
                     <div class="text-danger">
-                        <a href="{{ regel.prev[loop.index-1] }}" target="_blank"
-                        class="badge badge-secondary">{{regel.tracks[loop.index-1]}}</a>
+                        <a href="{{ regel.prev[loop.index-1] }}" target="_blank">
+                        {{regel.tracks[loop.index-1]}}</a>
                     </div>
-                    <!-- <div class="col-6"> 
+                    <!-- <div class="column > 
                         <audio controls title="{{ regel.tracks[loop.index-1] }}" preload="none"> 
                             <source src="{{ regel.prev[loop.index-1] }}" type="audio/mpeg">
                         </audio>
